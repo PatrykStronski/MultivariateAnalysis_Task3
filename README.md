@@ -1,6 +1,6 @@
 # Target Variables:
 1. fire_size - how big the fire can grow
-1. fire_mag - what is the fire's magnitude
+1. fire_cause_descr - what is the fire's magnitude
 1. Number of fires in a month
 
 # Modelling variables (predictors):

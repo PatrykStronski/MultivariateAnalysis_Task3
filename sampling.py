@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import math
+import random
 from typing import Callable
 
 def pps(df: pd.DataFrame, property: str, size_f: float) -> pd.DataFrame:
@@ -20,12 +21,14 @@ def pps(df: pd.DataFrame, property: str, size_f: float) -> pd.DataFrame:
     del ndf['cumulative_sum'] #so that new file doesn't have cum_sum column
     return ndf
 
-def accept_reject(df: pd.DataFrame, property: str, dis: Callable, dis_params: tuple):
+def accept_reject(df: pd.DataFrame, property: str, dis: Callable, M: float):
+    dis_params = dis.fit(df[property])
+    df_sample = pd.DataFrame(columns=df.columns)
     df_size = df.shape[0]
 
     min_val = df[property].min()
     max_val = df[property].max()
-    x = np.linspace(min_val, max_val, num=50)
+    x = np.linspace(min_val, max_val, num=5000)
 
     ind = 0
 
@@ -35,16 +38,13 @@ def accept_reject(df: pd.DataFrame, property: str, dis: Callable, dis_params: tu
 
         avg = (min_s + max_s) / 2
         sm = df.loc[(df[property] >= min_s) & (df[property] < max_s)]
-        prob_current = sm.shape[0]/df_size
-        prob_needed = 1.0
-        if len(dis_params) == 2:
-            prob_needed = dis.pdf(avg, dis_params[0], dis_params[1])
-        else:
-            prob_needed = dis.pdf(avg, dis_params[0], dis_params[1], dis_params[2])
+        prob_current = M * sm.shape[0]/df_size
+        prob_needed = dis.pdf(avg, dis_params[0], dis_params[1])
 
-        if prob_current > prob_needed:
-            to_drop = sm.sample(n=math.floor((prob_current - prob_needed) * df_size))
-            df = df.drop(index=to_drop.index)
+        r_m = random.random()
+
+        if r_m <= (prob_needed/prob_current):
+            df_sample = df_sample.append(sm)
     
         ind += 1
-    return df
+    return df_sample
