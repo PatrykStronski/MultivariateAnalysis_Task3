@@ -1,0 +1,1 @@
+{"V": ["fire_size", "stat_cause_descr", "latitude", "longitude", "Temp_pre_30", "Temp_pre_15", "Temp_pre_7", "Hum_pre_30", "Hum_pre_15", "Hum_pre_7", "Prec_pre_30", "remoteness"]}
