@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas.core.frame import DataFrame
 import numpy as np
 import math
 import random
@@ -11,15 +12,15 @@ def pps(df: pd.DataFrame, property: str, size_f: float) -> pd.DataFrame:
     df['cumulative_sum'] = df[property].cumsum()
     interval_width = int(fire_size_total/sample_size)
 
-    num = interval_width #can be a random number also as in the example
+    num = interval_width 
 
     sampled_series = np.arange(num, fire_size_total, interval_width)
     cum_array = np.asarray(df['cumulative_sum'])
-    idx = np.searchsorted(cum_array, sampled_series) #the heart of code
+    idx = np.searchsorted(cum_array, sampled_series)
     result = cum_array[idx-1] 
     ndf = df[df.cumulative_sum.isin(result)]
-    del ndf['cumulative_sum'] #so that new file doesn't have cum_sum column
-    return ndf
+    del ndf['cumulative_sum'] 
+    return ndf 
 
 def accept_reject(df: pd.DataFrame, property: str, dis: Callable, M: float):
     dis_params = dis.fit(df[property])
@@ -47,4 +48,4 @@ def accept_reject(df: pd.DataFrame, property: str, dis: Callable, M: float):
             df_sample = df_sample.append(sm)
     
         ind += 1
-    return df_sample
+    return (df_sample, dis_params)

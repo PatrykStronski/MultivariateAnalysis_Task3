@@ -1,0 +1,1 @@
+{"V": ["disc_pre_year", "disc_pre_month", "count", "Prec_pre_30", "Temp_pre_30", "Wind_pre_30", "Hum_pre_30"], "E": [["count", "Wind_pre_30"], ["Prec_pre_30", "Temp_pre_30"], ["Wind_pre_30", "Prec_pre_30"], ["Hum_pre_30", "Wind_pre_30"]]}
