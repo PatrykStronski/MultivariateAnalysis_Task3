@@ -1,0 +1,1 @@
+{"V": ["latitude", "longitude", "fire_size", "Hum_pre_7", "remoteness", "stat_cause_descr", "Temp_pre_7", "Temp_cont", "Wind_cont"], "E": [["latitude", "fire_size"], ["longitude", "fire_size"], ["remoteness", "fire_size"], ["stat_cause_descr", "fire_size"], ["Hum_pre_7", "fire_size"], ["Temp_pre_7", "fire_size"], ["Temp_cont", "fire_size"], ["Wind_cont", "fire_size"]]}

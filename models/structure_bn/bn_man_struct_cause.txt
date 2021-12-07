@@ -1,0 +1,1 @@
+{"V": ["Prec_pre_7", "Prec_cont", "Prec_pre_15", "Prec_pre_30", "Hum_cont", "Wind_pre_7", "stat_cause_descr"], "E": [["Prec_pre_7", "Prec_cont"], ["Prec_cont", "Prec_pre_15"], ["Prec_pre_15", "Prec_pre_30"], ["Prec_pre_30", "Hum_cont"], ["Hum_cont", "Wind_pre_7"], ["Wind_pre_7", "stat_cause_descr"]]}
